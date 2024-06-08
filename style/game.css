@@ -1,0 +1,17 @@
+#snakeGameHeading {
+    text-align: center;
+    color: seagreen;
+}
+
+body {
+    background-color: darkgray;
+}
+
+#gameCanvas {
+    background-color: darkslategrey;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

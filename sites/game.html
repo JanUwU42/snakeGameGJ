@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
+    <title>Snake Game</title>
+    <link href="../style/game.css" rel="stylesheet">
 </head>
 <body>
 
-<h1>Snake Game</h1>
+<h1 id="snakeGameHeading">Snake Game</h1>
 <hr>
 
-<canvas width="400" height="400" id="game"></canvas>
+<canvas width="400" height="400" id="gameCanvas"></canvas>
 <script>
-    var canvas = document.getElementById('game');
+    var canvas = document.getElementById('gameCanvas');
     var context = canvas.getContext('2d');
 
     var grid = 16;
