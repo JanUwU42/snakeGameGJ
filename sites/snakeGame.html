@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Snake Game</title>
+    <link href="../style/snakeGame.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1 id="snakeGameHeading">Snake Game</h1>
+    <hr>
+    <button><a href="../Index.html" id="homeBtn">Home</a></button>
+    <hr>
+    <h2 id="diffHeading">Choose a difficulty:</h2>
+    <div id="setDifficultyDiv">
+        <button onclick="setDifficulty(10)" class="diffucultyBtn">Very easy</button>
+        <button onclick="setDifficulty(6)" class="diffucultyBtn">easy</button>
+        <button onclick="setDifficulty(4)" class="diffucultyBtn">medium</button>
+        <button onclick="setDifficulty(3)" class="diffucultyBtn">hard</button>
+        <button onclick="setDifficulty(1)" class="diffucultyBtn">insane</button>
+    </div>
+    <hr>
+
+    <!-- create game canvas -->
+    <canvas width="400" height="400" id="gameCanvas"></canvas>
+    <!-- include snake game script -->
+    <script src="../scripts/snakeGame.js"></script>
+
+</body>
+
+</html>

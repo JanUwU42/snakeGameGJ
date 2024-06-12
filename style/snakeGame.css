@@ -15,3 +15,16 @@ body {
     margin-right: auto;
     display: block;
 }
+
+#setDifficultyDiv {
+    background-color: aquamarine;
+    display: flex;
+    gap: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#diffHeading{
+    margin-left: 50px;
+    color: aqua;
+}
