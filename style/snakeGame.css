@@ -4,11 +4,11 @@
 }
 
 body {
-    background-color: darkgray;
+    background-color: cadetblue;
 }
 
 #gameCanvas {
-    background-color: darkslategrey;
+    background-color: gray;
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
