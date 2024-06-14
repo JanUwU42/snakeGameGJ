@@ -11,6 +11,16 @@
     <h1>Scoreboard</h1>
     <hr>
     <button><a href="../Index.html">Home</a></button>
+    <hr>
+
+    <?php
+        echo "Test123";
+    ?>
+
+    <!-- 
+        Hier das Scoreboard aufbauen 
+    -->
+
 </body>
 
 </html>
