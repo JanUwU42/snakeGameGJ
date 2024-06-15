@@ -205,4 +205,7 @@ function moveDown() {
 }
 
 // start the game
-requestAnimationFrame(gameLoop);
+function startGame() {
+    requestAnimationFrame(gameLoop);
+    document.getElementById('startGameBtn').disabled=true;
+}
