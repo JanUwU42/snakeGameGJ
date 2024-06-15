@@ -1,11 +1,11 @@
 #snakeGameHeading {
     text-align: center;
-    color: #0be881;
+    color: black;
 
 }
 
 body {
-    background-color: #1e272e;
+    background-color: #d2dae2;
     font-family: monospace;
 }
 
@@ -19,7 +19,7 @@ body {
 }
 
 #setDifficultyDiv {
-    background-color: #34e7e4;
+    background-color: #485460;
     display: flex;
     gap: 25px;
     margin-left: 50px;
@@ -28,10 +28,10 @@ body {
 
 #diffHeading{
     margin-left: 50px;
-    color: #34e7e4;
+    color: black;
 }
 
 #highscore {
-    color: #0be881;
+    color: black;
     text-align: center;
 }

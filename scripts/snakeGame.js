@@ -35,7 +35,7 @@ var apple = {
     Hard = 3
     Insane = 1 
 */
-var difficulty = 4;
+var difficulty = 6;
 
 // get random whole numbers in a specific range from min to max
 function getRandomInt(min, max) {

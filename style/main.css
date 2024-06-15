@@ -3,5 +3,8 @@ h1 {
 }
 
 body {
-    background-color: cadetblue;
+    background-color: #d2dae2;
+    display: grid;
+    place-items: center;
+    min-height: 50vh;
 }
