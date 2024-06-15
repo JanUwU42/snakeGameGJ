@@ -1,14 +1,14 @@
 #snakeGameHeading {
     text-align: center;
-    color: seagreen;
+    color: #0be881;
 }
 
 body {
-    background-color: cadetblue;
+    background-color: #1e272e;
 }
 
 #gameCanvas {
-    background-color: gray;
+    background-color: #808e9b;
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
@@ -17,7 +17,7 @@ body {
 }
 
 #setDifficultyDiv {
-    background-color: aquamarine;
+    background-color: #34e7e4;
     display: flex;
     gap: 25px;
     margin-left: 50px;
@@ -26,5 +26,5 @@ body {
 
 #diffHeading{
     margin-left: 50px;
-    color: aqua;
+    color: #34e7e4;
 }
