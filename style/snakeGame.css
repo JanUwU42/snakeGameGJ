@@ -1,10 +1,12 @@
 #snakeGameHeading {
     text-align: center;
     color: #0be881;
+
 }
 
 body {
     background-color: #1e272e;
+    font-family: monospace;
 }
 
 #gameCanvas {
@@ -27,4 +29,9 @@ body {
 #diffHeading{
     margin-left: 50px;
     color: #34e7e4;
+}
+
+#highscore {
+    color: #0be881;
+    text-align: center;
 }

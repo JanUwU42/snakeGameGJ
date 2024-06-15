@@ -17,6 +17,7 @@ var snake = {
     cells: [],
 
     // length of the snake. grows when eating an apple
+    // also counts as the score of the player
     maxCells: 4
 };
 
@@ -43,6 +44,26 @@ function getRandomInt(min, max) {
 
 function setDifficulty(dDifficulty) {
     difficulty = dDifficulty;
+}
+
+function snakeEatApple() {
+    snake.maxCells++;
+
+    // canvas is 400x400 which is 25x25 grids
+    apple.x = getRandomInt(0, 25) * grid;
+    apple.y = getRandomInt(0, 25) * grid;
+}
+
+function resetGame() {
+    snake.x = 160;
+    snake.y = 160;
+    snake.cells = [];
+    snake.maxCells = 4;
+    snake.dx = grid;
+    snake.dy = 0;
+
+    apple.x = getRandomInt(0, 25) * grid;
+    apple.y = getRandomInt(0, 25) * grid;
 }
 
 // game loop
@@ -98,27 +119,15 @@ function gameLoop() {
 
         // snake ate apple
         if (cell.x === apple.x && cell.y === apple.y) {
-            snake.maxCells++;
-
-            // canvas is 400x400 which is 25x25 grids
-            apple.x = getRandomInt(0, 25) * grid;
-            apple.y = getRandomInt(0, 25) * grid;
+            snakeEatApple();
         }
 
         // check collision with all cells after this one (modified bubble sort)
         for (var i = index + 1; i < snake.cells.length; i++) {
-
             // snake occupies same space as a body part. reset game
             if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-                snake.x = 160;
-                snake.y = 160;
-                snake.cells = [];
-                snake.maxCells = 4;
-                snake.dx = grid;
-                snake.dy = 0;
-
-                apple.x = getRandomInt(0, 25) * grid;
-                apple.y = getRandomInt(0, 25) * grid;
+                document.getElementById()
+                resetGame();
             }
         }
     });
@@ -131,27 +140,61 @@ document.addEventListener('keydown', function (e) {
     // left won't do anything, and pressing right while moving left
     // shouldn't let you collide with your own body)
 
-    // left arrow key
-    if (e.which === 37 && snake.dx === 0) {
+    // handle arrow keys and WASD keys
+    switch (e.key) {
+        // move left
+        case 'ArrowLeft':
+        case 'a':
+            moveLeft();
+            break;
+
+        // move up
+        case 'ArrowUp':
+        case 'w':
+            moveUp();
+            break;
+
+        // move right
+        case 'ArrowRight':
+        case 'd':
+            moveRight();
+            break;
+
+        // move down
+        case 'ArrowDown':
+        case 's':
+            moveDown();
+            break;
+    }
+});
+
+function moveLeft() {
+    if (snake.dx === 0) {
         snake.dx = -grid;
         snake.dy = 0;
     }
-    // up arrow key
-    else if (e.which === 38 && snake.dy === 0) {
+}
+
+function moveUp() {
+    if (snake.dy === 0) {
         snake.dy = -grid;
         snake.dx = 0;
     }
-    // right arrow key
-    else if (e.which === 39 && snake.dx === 0) {
+}
+
+function moveRight() {
+    if (snake.dx === 0) {
         snake.dx = grid;
         snake.dy = 0;
     }
-    // down arrow key
-    else if (e.which === 40 && snake.dy === 0) {
+}
+
+function moveDown() {
+    if (snake.dy === 0) {
         snake.dy = grid;
         snake.dx = 0;
     }
-});
+}
 
 // start the game
 requestAnimationFrame(gameLoop);
