@@ -1,11 +1,11 @@
 #snakeGameHeading {
     text-align: center;
-    color: black;
+    color: #05c46b;
 
 }
 
 body {
-    background-color: #d2dae2;
+    background-color: #1e272e;
     font-family: monospace;
 }
 
@@ -28,11 +28,11 @@ body {
 
 #diffHeading{
     margin-left: 50px;
-    color: black;
+    color: #0fbcf9;
 }
 
 #highscore {
-    color: black;
+    color: #05c46b;
     text-align: center;
 }
 
