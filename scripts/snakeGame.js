@@ -3,6 +3,7 @@ var context = canvas.getContext('2d');
 
 var grid = 16;
 var count = 0;
+var highscore = 0;
 
 // create snake
 var snake = {
@@ -126,11 +127,18 @@ function gameLoop() {
         for (var i = index + 1; i < snake.cells.length; i++) {
             // snake occupies same space as a body part. reset game
             if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-                document.getElementById()
+                setHighscore();
                 resetGame();
             }
         }
     });
+}
+
+function setHighscore() {
+    if (snake.maxCells > highscore) {
+        highscore = snake.maxCells;
+        document.getElementById('highscore').innerHTML = `Highscore: ${snake.maxCells}`;
+    }
 }
 
 // listen to keyboard events to move the snake
