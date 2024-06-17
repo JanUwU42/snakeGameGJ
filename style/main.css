@@ -1,10 +1,16 @@
 h1 {
-    color: black;
+    color: #05c46b;
 }
 
 body {
-    background-color: #d2dae2;
+    background-color: #1e272e;
     display: grid;
     place-items: center;
     min-height: 50vh;
+    color: #d2dae2;
+    font-family: monospace;
+}
+
+p {
+    font-size: large;
 }
