@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>Scoreboard</h1>
+    <h1 id="scoreHeading">Scoreboard</h1>
     <hr>
     <button><a href="../Index.html">Home</a></button>
     <hr>

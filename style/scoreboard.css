@@ -1,0 +1,13 @@
+#scoreHeading {
+    color: #05c46b;
+}
+
+body {
+    background-color: #1e272e;
+    color: #d2dae2;
+    font-family: monospace;
+}
+
+p {
+    font-size: large;
+}
