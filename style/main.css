@@ -6,10 +6,21 @@ body {
     background-color: #1e272e;
     display: grid;
     place-items: center;
-    min-height: 50vh;
+    min-height: 30vh;
     color: #d2dae2;
     font-family: monospace;
 }
+
+.button-container {
+    background-color: #485460;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    width: 405px;
+    border-radius: 10px;
+    box-shadow: 0 5px 8px rgba(5, 196, 107, 0.24);
+}
+
 
 p {
     font-size: large;

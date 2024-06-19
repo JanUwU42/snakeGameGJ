@@ -9,31 +9,31 @@
 
 <body>
 
-    <h1 id="snakeGameHeading">Snake Game</h1>
-    <hr>
+<h1 id="snakeGameHeading">Snake Game</h1>
+<hr>
 
-    <button id="homeBtn"><a href="../Index.html"><img src="../img/homeIcon.png" alt="homeIcon"></a></button>
+<button id="homeBtn"><a href="../Index.html"><img src="../img/homeIcon.png" alt="homeIcon"></a></button>
 
-    <hr>
-    <h2 id="diffHeading">Wähle einen Schwierigkeitsgrad:</h2>
-    <div id="setDifficultyDiv">
-        <button onclick="setDifficulty(10)" class="diffucultyBtn">Sehr leicht</button>
-        <button onclick="setDifficulty(6)" class="diffucultyBtn">Leicht</button>
-        <button onclick="setDifficulty(4)" class="diffucultyBtn">Mittel</button>
-        <button onclick="setDifficulty(3)" class="diffucultyBtn">Schwer</button>
-        <button onclick="setDifficulty(1)" class="diffucultyBtn">Unmöglich</button>
-    </div>
-    <hr>
+<hr>
+<h2 id="diffHeading">Wähle einen Schwierigkeitsgrad:</h2>
+<div id="setDifficultyDiv">
+    <button onclick="setDifficulty(10)" class="diffucultyBtn">Sehr leicht</button>
+    <button onclick="setDifficulty(6)" class="diffucultyBtn">Leicht</button>
+    <button onclick="setDifficulty(4)" class="diffucultyBtn">Mittel</button>
+    <button onclick="setDifficulty(3)" class="diffucultyBtn">Schwer</button>
+    <button onclick="setDifficulty(1)" class="diffucultyBtn">Unmöglich</button>
+</div>
+<hr>
+<br>
+<!-- create game canvas -->
+<canvas width="400" height="400" id="gameCanvas"></canvas>
+<!-- include snake game script -->
+<script src="../scripts/snakeGame.js"></script>
 
-    <!-- create game canvas -->
-    <canvas width="400" height="400" id="gameCanvas"></canvas>
-    <!-- include snake game script -->
-    <script src="../scripts/snakeGame.js"></script>
+<br>
+<button id="startGameBtn" onClick="startGame();">Start Game</button>
 
-    <br>
-    <button id="startGameBtn" onClick="startGame();">Start Game</button>
-
-    <h3 id="highscore">Highscore: 0</h3>
+<h3 id="highscore">Highscore: 0</h3>
 </body>
 
 </html>
