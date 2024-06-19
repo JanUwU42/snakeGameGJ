@@ -2,8 +2,11 @@ var canvas = document.getElementById('gameCanvas');
 var context = canvas.getContext('2d');
 
 var grid = 16;
-var count = 0;
 var highscore = 0;
+var lastTime = 0;
+var speed = 0; // speed of the game in milliseconds (e.g. 100ms = 10fps)
+setDifficulty(15); // default speed = medium
+var animationId; // variable to save the requestAnimationFrame-ID
 
 // create snake
 var snake = {
@@ -28,23 +31,13 @@ var apple = {
     y: 320
 };
 
-/* Difficulties
-    Slows down game loop to less fps instead of 60 (60/desiredFPS = difficulty)
-    very easy = 10
-    easy = 6
-    medium/normal = 4
-    Hard = 3
-    Insane = 1 
-*/
-var difficulty = 4;
-
 // get random whole numbers in a specific range from min to max
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function setDifficulty(dDifficulty) {
-    difficulty = dDifficulty;
+function setDifficulty(fps) {
+    speed = 1000 / fps; // convert fps in milliseconds per Frame
 }
 
 function snakeEatApple() {
@@ -56,6 +49,11 @@ function snakeEatApple() {
 }
 
 function resetGame() {
+    if (animationId) {
+        cancelAnimationFrame(animationId); // stop the game
+        animationId = null; // set the animationId to null, to make sure, that the animation stopped
+    }
+
     snake.x = 160;
     snake.y = 160;
     snake.cells = [];
@@ -65,79 +63,84 @@ function resetGame() {
 
     apple.x = getRandomInt(0, 25) * grid;
     apple.y = getRandomInt(0, 25) * grid;
+
+    document.getElementById('startGameBtn').disabled = false; // reactivate the start button
 }
 
 // game loop
-function gameLoop() {
-    requestAnimationFrame(gameLoop);
-
-    // set difficulty/speed of the game 
-    if (++count < difficulty) {
-        return;
+function gameLoop(timestamp) {
+    if (!animationId) {
+        return; // end game loop when animationID is null
     }
 
-    count = 0;
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    if (timestamp - lastTime >= speed) {
+        lastTime = timestamp;
+        context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // move snake by it's velocity
-    snake.x += snake.dx;
-    snake.y += snake.dy;
 
-    // wrap snake position horizontally on edge of screen
-    if (snake.x < 0) {
-        snake.x = canvas.width - grid;
-    }
-    else if (snake.x >= canvas.width) {
-        snake.x = 0;
-    }
+        // move snake by it's velocity
+        snake.x += snake.dx;
+        snake.y += snake.dy;
 
-    // wrap snake position vertically on edge of screen
-    if (snake.y < 0) {
-        snake.y = canvas.height - grid;
-    }
-    else if (snake.y >= canvas.height) {
-        snake.y = 0;
-    }
-
-    // keep track of where snake has been. front of the array is always the head
-    snake.cells.unshift({ x: snake.x, y: snake.y });
-
-    // remove cells as we move away from them
-    if (snake.cells.length > snake.maxCells) {
-        snake.cells.pop();
-    }
-
-    // draw apple
-    context.fillStyle = '#f53b57';
-    context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
-
-    // draw snake one cell at a time
-    context.fillStyle = '#0be881';
-    snake.cells.forEach(function (cell, index) {
-
-        // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
-        context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
-
-        // snake ate apple
-        if (cell.x === apple.x && cell.y === apple.y) {
-            snakeEatApple();
+        // wrap snake position horizontally on edge of screen
+        if (snake.x < 0) {
+            snake.x = canvas.width - grid;
+        }
+        else if (snake.x >= canvas.width) {
+            snake.x = 0;
         }
 
-        // check collision with all cells after this one (modified bubble sort)
-        for (var i = index + 1; i < snake.cells.length; i++) {
-            // snake occupies same space as a body part. reset game
-            if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-                setHighscore();
-                resetGame();
+        // wrap snake position vertically on edge of screen
+        if (snake.y < 0) {
+            snake.y = canvas.height - grid;
+        }
+        else if (snake.y >= canvas.height) {
+            snake.y = 0;
+        }
+
+        // keep track of where snake has been. front of the array is always the head
+        snake.cells.unshift({ x: snake.x, y: snake.y });
+
+        // remove cells as we move away from them
+        if (snake.cells.length > snake.maxCells) {
+            snake.cells.pop();
+        }
+
+        // draw apple
+        context.fillStyle = '#f53b57';
+        context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+
+        // draw snake one cell at a time
+        context.fillStyle = '#0be881';
+        snake.cells.forEach(function (cell, index) {
+
+            // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
+            context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
+
+            // snake ate apple
+            if (cell.x === apple.x && cell.y === apple.y) {
+                snakeEatApple();
             }
-        }
-    });
+
+            // check collision with all cells after this one (modified bubble sort)
+            for (var i = index + 1; i < snake.cells.length; i++) {
+                // snake occupies same space as a body part. reset game
+                if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+                    setHighscore();
+                    resetGame();
+                    return; // end the game loop to ensure that the game loop / requestanimationframe doesnt get called again
+                }
+            }
+        });
+    }
+
+    animationId = requestAnimationFrame(gameLoop);
 }
 
 function setHighscore() {
     if (snake.maxCells > highscore) {
         highscore = snake.maxCells;
-        document.getElementById('highscore').innerHTML = `Highscore: ${snake.maxCells}`;
+        document.getElementById('highscore').innerHTML = `Highscore: ${highscore}`;
     }
 }
 
@@ -206,6 +209,9 @@ function moveDown() {
 
 // start the game
 function startGame() {
-    requestAnimationFrame(gameLoop);
-    document.getElementById('startGameBtn').disabled = true;
+    lastTime = 0; // reset lastTime to ensure smooth start
+    if (!animationId) { // Start the game only if it is not already running
+        animationId = requestAnimationFrame(gameLoop);
+        document.getElementById('startGameBtn').disabled = true;
+    }
 }
