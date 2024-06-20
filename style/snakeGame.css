@@ -36,7 +36,7 @@ body {
     color: #0be881;
 }
 
-#highscore {
+.scores {
     color: #05c46b;
     text-align: center;
     text-shadow: 0 0 15px rgb(42, 145, 73), 0 0 30px rgb(42, 145, 73), 0 0 60px rgb(42, 145, 73), 0 0 120px rgb(42, 145, 73);

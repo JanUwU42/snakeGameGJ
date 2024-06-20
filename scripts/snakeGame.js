@@ -49,6 +49,8 @@ function snakeEatApple() {
     // canvas is 400x400 which is 25x25 grids
     apple.x = getRandomInt(0, 25) * grid;
     apple.y = getRandomInt(0, 25) * grid;
+
+    updateScore();
 }
 
 function resetGame() {
@@ -146,6 +148,10 @@ function setHighscore() {
     }
 }
 
+function updateScore() {
+    document.getElementById('currentScore').innerHTML = `Score: ${snake.maxCells}`;
+}
+
 // listen to keyboard events to move the snake
 document.addEventListener('keydown', function (e) {
     // prevent snake from backtracking on itself by checking that it's
@@ -216,4 +222,5 @@ function startGame() {
         animationId = requestAnimationFrame(gameLoop);
         document.getElementById('startGameBtn').disabled = true;
     }
+    updateScore();
 }
