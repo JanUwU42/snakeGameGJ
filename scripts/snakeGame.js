@@ -5,11 +5,14 @@ var grid = 16;
 var highscore = 0;
 var lastTime = 0;
 var speed = 0; // speed of the game in milliseconds (e.g. 100ms = 10fps)
-setDifficulty(15); // default speed = medium
 var animationId; // variable to save the requestAnimationFrame-ID
 
+const diffuculties = [6, 10, 15, 25, 50, 100];
+
+setDifficulty(diffuculties[2]); // default speed = medium
+
 // create snake
-var snake = {
+const snake = {
     x: 160,
     y: 160,
 
@@ -26,7 +29,7 @@ var snake = {
 };
 
 // create apple
-var apple = {
+const apple = {
     x: 320,
     y: 320
 };
@@ -112,8 +115,7 @@ function gameLoop(timestamp) {
 
         // draw snake one cell at a time
         context.fillStyle = '#0be881';
-        snake.cells.forEach(function (cell, index) {
-
+        snake.cells.forEach(cell => {
             // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
             context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
 
@@ -121,17 +123,17 @@ function gameLoop(timestamp) {
             if (cell.x === apple.x && cell.y === apple.y) {
                 snakeEatApple();
             }
-
-            // check collision with all cells after this one (modified bubble sort)
-            for (var i = index + 1; i < snake.cells.length; i++) {
-                // snake occupies same space as a body part. reset game
-                if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-                    setHighscore();
-                    resetGame();
-                    return; // end the game loop to ensure that the game loop / requestanimationframe doesnt get called again
-                }
-            }
         });
+
+        // check collision with all cells after this one (modified bubble sort)
+        for (var i = 1; i < snake.cells.length; i++) {
+            // snake occupies same space as a body part. reset game
+            if (snake.cells[0].x === snake.cells[i].x && snake.cells[0].y === snake.cells[i].y) {
+                setHighscore();
+                resetGame();
+                return; // end the game loop to ensure that the game loop / requestanimationframe doesnt get called again
+            }
+        }
     }
 
     animationId = requestAnimationFrame(gameLoop);
