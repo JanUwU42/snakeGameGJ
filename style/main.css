@@ -31,6 +31,10 @@ b {
     margin-top: 25px;
 }
 
+.menu-btns {
+    height: 50px;
+}
+
 /*https://uiverse.io/hamoode-taha-04/popular-snail-78*/
 .menu-btn {
     cursor: pointer;
