@@ -6,6 +6,7 @@ var highscore = 0;
 var lastTime = 0;
 var speed = 0; // speed of the game in milliseconds (e.g. 100ms = 10fps)
 var animationId; // variable to save the requestAnimationFrame-ID
+var didChangeDirection = false; // variable to track wether the snake is already moving in this frame
 
 const diffuculties = [6, 10, 15, 25, 50, 100];
 
@@ -82,6 +83,7 @@ function gameLoop(timestamp) {
         lastTime = timestamp;
         context.clearRect(0, 0, canvas.width, canvas.height);
 
+        didChangeDirection = false; // reset direction change lock
 
         // move snake by it's velocity
         snake.x += snake.dx;
@@ -188,30 +190,34 @@ document.addEventListener('keydown', function (e) {
 });
 
 function moveLeft() {
-    if (snake.dx === 0) {
+    if (snake.dx === 0 && !didChangeDirection) {
         snake.dx = -grid;
         snake.dy = 0;
+        didChangeDirection = true; // lock direction change
     }
 }
 
 function moveUp() {
-    if (snake.dy === 0) {
+    if (snake.dy === 0 && !didChangeDirection) {
         snake.dy = -grid;
         snake.dx = 0;
+        didChangeDirection = true; // lock direction change
     }
 }
 
 function moveRight() {
-    if (snake.dx === 0) {
+    if (snake.dx === 0 && !didChangeDirection) {
         snake.dx = grid;
         snake.dy = 0;
+        didChangeDirection = true; // lock direction change
     }
 }
 
 function moveDown() {
-    if (snake.dy === 0) {
+    if (snake.dy === 0 && !didChangeDirection) {
         snake.dy = grid;
         snake.dx = 0;
+        didChangeDirection = true; // lock direction change
     }
 }
 
