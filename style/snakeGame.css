@@ -21,14 +21,17 @@ body {
 #setDifficultyDiv {
     background-color: #485460;
     display: flex;
+    justify-content: center;
     gap: 25px;
     margin-left: 50px;
     margin-right: 50px;
+    border-radius: 10px;
+    box-shadow: 0 5px 8px rgba(5, 196, 107, 0.24);
 }
 
 #diffHeading {
-    margin-left: 50px;
-    color: #0fbcf9;
+    margin-left: 200px;
+    color: #0be881;
 }
 
 #highscore {
@@ -43,4 +46,8 @@ body {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+#homeBtn {
+    margin-left: 200px;
 }
