@@ -10,12 +10,15 @@
 <body>
     <h1 id="scoreHeading">Scoreboard</h1>
     <hr>
-    <button><a href="../Index.html">Home</a></button>
+    <button id="homeBtn" onclick="location.href='../Index.html'"><img src="../img/homeIcon.png" alt="homeIcon"></button>
     <hr>
 
-    <?php
-        echo "Test123";
-    ?>
+    <i>
+        <?php
+            echo "Comming soon!";
+        ?>
+    </i>
+
 
     <!-- 
         Hier das Scoreboard aufbauen 
