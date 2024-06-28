@@ -13,9 +13,30 @@
     <button id="homeBtn" onclick="location.href='../Index.html'"><img src="../img/homeIcon.png" alt="homeIcon"></button>
     <hr>
 
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Score</th>
+                <th>Diffuculty</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                $db = new SQLite3('snakeHighscores.sqlite');
+                $results = $db->query('SELECT * FROM highscores ORDER BY DESC');
+
+                while ($row = $results->fetchArray()) {
+                    echo "<tr><td>{$row['spielername']}</td><td>{$row['score']}</td><td>{$row['schwierigkeitsgrad']}</td></tr>";
+                }
+            ?>
+        </tbody>
+    </table>
+
+
     <i>
         <?php
-            echo "Comming soon!";
+        echo "Comming soon!";
         ?>
     </i>
 
