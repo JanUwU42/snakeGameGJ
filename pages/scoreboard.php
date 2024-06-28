@@ -33,18 +33,6 @@
         </tbody>
     </table>
 
-
-    <i>
-        <?php
-        echo "Comming soon!";
-        ?>
-    </i>
-
-
-    <!-- 
-        Hier das Scoreboard aufbauen 
-    -->
-
 </body>
 
 </html>

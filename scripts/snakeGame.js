@@ -167,24 +167,28 @@ document.addEventListener('keydown', function (e) {
         case 'ArrowLeft':
         case 'a':
             moveLeft();
+            e.preventDefault();
             break;
 
         // move up
         case 'ArrowUp':
         case 'w':
             moveUp();
+            e.preventDefault();
             break;
 
         // move right
         case 'ArrowRight':
         case 'd':
             moveRight();
+            e.preventDefault();
             break;
 
         // move down
         case 'ArrowDown':
         case 's':
             moveDown();
+            e.preventDefault();
             break;
     }
 });
