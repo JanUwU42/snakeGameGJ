@@ -23,11 +23,13 @@
         </thead>
         <tbody>
             <?php
-                $db = new SQLite3('snakeHighscores.sqlite' ,
-                                     SQLITE3_OPEN_READWRITE ,
-                              SQLITE3_OPEN_CREATE);
+            $db = new SQLite3(
+                'snakeHighscores.sqlite',
+                SQLITE3_OPEN_READWRITE,
+                SQLITE3_OPEN_CREATE
+            );
 
-                $results = $db->query('SELECT * FROM highscores ORDER BY score DESC');
+            $results = $db->query('SELECT * FROM highscores ORDER BY score DESC');
 
             // Highscores in Tabelle ausgeben
             while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
