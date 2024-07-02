@@ -3,12 +3,11 @@
 $db = new SQLite3('../db/snakeHighscores.sqlite');
 
 // JSON-Daten empfangen
-$input = file_get_contents('php://input');
-$data = json_decode($input, true);
+$data = json_decode(file_get_contents('php://input'), true);
 
 // Variablen aus den JSON-Daten extrahieren
 $username = $data['username'];
-$highscore = $data['highscore'];
+$highscore = $data['score'];
 $difficulty = $data['difficulty'];
 $timestamp = $data['timestamp'];
 
@@ -20,6 +19,6 @@ $stmt->bindValue(':difficulty', $difficulty, SQLITE3_TEXT);
 $stmt->bindValue(':timestamp', $timestamp, SQLITE3_TEXT);
 $stmt->execute();
 
-// Erfolgsnachricht zurückgeben
-echo json_encode(["message" => "Highscore submitted successfully!"]);
+// Success :D
+echo json_encode(['status' => 'success']);
 ?>

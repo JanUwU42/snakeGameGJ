@@ -158,6 +158,7 @@ function gameLoop(timestamp) {
             if (snake.cells[0].x === snake.cells[i].x && snake.cells[0].y === snake.cells[i].y) {
                 setHighscore();
                 resetGame();
+                updateDB();
                 return; // end the game loop to ensure that the game loop / requestanimationframe doesnt get called again
             }
         }
@@ -264,27 +265,29 @@ function startGame() {
         document.getElementById('startGameBtn').disabled = true;
     }
     updateScore();
-    updateDB()
 }
 
 async function updateDB() {
+    const timestamp = new Date().toISOString();
     let data = {
         "username": document.getElementById("userName").value,
         "score": highscore,
         "difficulty": difficulty,
-        "timestamp": Date.now()
+        "timestamp": timestamp
     }
-    console.log(data);
-    
-    fetch("../db/submit.php", {
+
+    await fetch("../db/submit.php", {
         "method": "POST",
         "headers": {
-            "Content-Type": "application/json; charset=utf-8"
+            "Content-Type": "application/json"
         },
         "body": JSON.stringify(data)
-    }).then(function(response){
-        return response.text();
-    }).then(function(data){
-        console.log(data);
     })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
