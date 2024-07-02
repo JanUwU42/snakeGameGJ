@@ -276,7 +276,7 @@ async function updateDB() {
     }
     console.log(data);
     
-    fetch("../pages/submit.php", {
+    fetch("../db/submit.php", {
         "method": "POST",
         "headers": {
             "Content-Type": "application/json; charset=utf-8"

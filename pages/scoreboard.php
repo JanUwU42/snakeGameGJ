@@ -25,7 +25,7 @@
         <tbody>
             <?php
             $db = new SQLite3(
-                '../snakeHighscores.sqlite',
+                '../db/snakeHighscores.sqlite',
                 SQLITE3_OPEN_READWRITE,
                 SQLITE3_OPEN_CREATE
             );
