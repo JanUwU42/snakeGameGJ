@@ -94,6 +94,8 @@ function resetGame() {
     apple.y = getRandomInt(0, 25) * grid;
 
     document.getElementById('startGameBtn').disabled = false; // reactivate the start button
+    
+    document.getElementById('userName').disabled = false; // reactivate the UserName Field
 }
 
 // game loop
@@ -263,6 +265,7 @@ function startGame() {
     if (!animationId) { // Start the game only if it is not already running
         animationId = requestAnimationFrame(gameLoop);
         document.getElementById('startGameBtn').disabled = true;
+        document.getElementById('userName').disabled = true;
     }
     updateScore();
 }
@@ -291,3 +294,11 @@ async function updateDB() {
             console.error('Error:', error);
         });
 }
+
+document.getElementById('userName').addEventListener('input', function () {
+    if (this.value == "") {
+        document.getElementById('startGameBtn').disabled = true;
+    } else {
+        document.getElementById('startGameBtn').disabled = false;
+    }
+});

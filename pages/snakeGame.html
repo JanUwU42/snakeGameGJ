@@ -15,7 +15,7 @@
     <button id="homeBtn" onclick="location.href='../Index.html'"><img src="../img/homeIcon.png" alt="homeIcon"></button>
 
     <hr>
-    <h2 id="diffHeading">Wähle einen Schwierigkeitsgrad:</h2>
+    <h2 id="diffHeading">Wähle einen Schwierigkeitsgrad (Standard = Mittel):</h2>
     <div id="setDifficultyDiv">
         <button onclick="setDifficulty(diffuculties[0])" class="diffucultyBtn">Sehr leicht</button>
         <button onclick="setDifficulty(diffuculties[1])" class="diffucultyBtn">Leicht</button>
@@ -35,7 +35,7 @@
     <script src="../scripts/snakeGame.js"></script>
 
     <br>
-    <button id="startGameBtn" onClick="startGame();">Start Game</button>
+    <button id="startGameBtn" onClick="startGame();" disabled>Start Game</button>
 
     <h3 id="currentScore" class="scores">Score: 4</h3>
     <h3 id="highscore" class="scores">Highscore: 0</h3>
