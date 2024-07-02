@@ -7,6 +7,7 @@ var lastTime = 0;
 var speed = 0; // speed of the game in milliseconds (e.g. 100ms = 10fps)
 var animationId; // variable to save the requestAnimationFrame-ID
 var didChangeDirection = false; // variable to track wether the snake is already moving in this frame
+var difficulty = "Mittel"
 
 const diffuculties = [6, 10, 15, 25, 50, 100];
 
@@ -42,6 +43,28 @@ function getRandomInt(min, max) {
 
 function setDifficulty(fps) {
     speed = 1000 / fps; // convert fps in milliseconds per Frame
+
+    // sets difficulty as a text for the db
+    switch (fps) {
+        case 6:
+            difficulty = "Sehr leicht";
+            break;
+        case 10:
+            difficulty = "Leicht";
+            break;
+        case 15:
+            difficulty = "Mittel";
+            break;
+        case 25:
+            difficulty = "Schwer";
+            break;
+        case 50:
+            difficulty = "Sehr Schwer";
+            break;
+        case 100:
+            difficulty = "Unmöglich";
+            break;
+    }
 }
 
 function snakeEatApple() {
@@ -165,30 +188,38 @@ document.addEventListener('keydown', function (e) {
     switch (e.key) {
         // move left
         case 'ArrowLeft':
-        case 'a':
             moveLeft();
             e.preventDefault();
+            break;
+        case 'a':
+            moveLeft();
             break;
 
         // move up
         case 'ArrowUp':
-        case 'w':
             moveUp();
             e.preventDefault();
+            break;
+        case 'w':
+            moveUp();
             break;
 
         // move right
         case 'ArrowRight':
-        case 'd':
             moveRight();
             e.preventDefault();
+            break;
+        case 'd':
+            moveRight();
             break;
 
         // move down
         case 'ArrowDown':
-        case 's':
             moveDown();
             e.preventDefault();
+            break;
+        case 's':
+            moveDown();
             break;
     }
 });
@@ -233,4 +264,27 @@ function startGame() {
         document.getElementById('startGameBtn').disabled = true;
     }
     updateScore();
+    updateDB()
+}
+
+async function updateDB() {
+    let data = {
+        "username": document.getElementById("userName").value,
+        "score": highscore,
+        "difficulty": difficulty,
+        "timestamp": Date.now()
+    }
+    console.log(data);
+    
+    fetch("../pages/submit.php", {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": JSON.stringify(data)
+    }).then(function(response){
+        return response.text();
+    }).then(function(data){
+        console.log(data);
+    })
 }

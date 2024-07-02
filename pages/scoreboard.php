@@ -19,6 +19,7 @@
                 <th>Username</th>
                 <th>Score</th>
                 <th>Diffuculty</th>
+                <th>Timestamp</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +35,6 @@
             // Highscores in Tabelle ausgeben
             while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
                 echo "<tr>";
-                echo "<td>{$row['id']}</td>";
                 echo "<td>{$row['username']}</td>";
                 echo "<td>{$row['score']}</td>";
                 echo "<td>{$row['difficulty']}</td>";
