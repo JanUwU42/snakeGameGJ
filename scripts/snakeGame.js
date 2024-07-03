@@ -195,6 +195,7 @@ document.addEventListener('keydown', function (e) {
             e.preventDefault();
             break;
         case 'a':
+        case 'A':
             moveLeft();
             break;
 
@@ -204,6 +205,7 @@ document.addEventListener('keydown', function (e) {
             e.preventDefault();
             break;
         case 'w':
+        case 'W':
             moveUp();
             break;
 
@@ -213,6 +215,7 @@ document.addEventListener('keydown', function (e) {
             e.preventDefault();
             break;
         case 'd':
+        case 'D':
             moveRight();
             break;
 
@@ -222,6 +225,7 @@ document.addEventListener('keydown', function (e) {
             e.preventDefault();
             break;
         case 's':
+        case 'S':
             moveDown();
             break;
     }
