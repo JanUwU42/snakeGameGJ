@@ -93,9 +93,15 @@ function resetGame() {
     apple.x = getRandomInt(0, 25) * grid;
     apple.y = getRandomInt(0, 25) * grid;
 
+    enableButtonsAndInput();
+}
+
+function enableButtonsAndInput() {
     document.getElementById('startGameBtn').disabled = false; // reactivate the start button
-    
+
     document.getElementById('userName').disabled = false; // reactivate the UserName Field
+
+    document.getElementsById('difficultyButton').disabled = false; // reactivate the difficulty buttons
 }
 
 // game loop
@@ -268,10 +274,15 @@ function startGame() {
     lastTime = 0; // reset lastTime to ensure smooth start
     if (!animationId) { // Start the game only if it is not already running
         animationId = requestAnimationFrame(gameLoop);
-        document.getElementById('startGameBtn').disabled = true;
-        document.getElementById('userName').disabled = true;
+        disableButtonsAndInput();
     }
     updateScore();
+}
+
+function disableButtonsAndInput() {
+    document.getElementById('startGameBtn').disabled = true;
+    document.getElementById('userName').disabled = true;
+    document.getElementsByClassName('diffucultyBtn').disabled = true;
 }
 
 async function updateDB() {
