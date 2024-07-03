@@ -19,12 +19,13 @@
                 <th>Username</th>
                 <th>Score</th>
                 <th>Diffuculty</th>
+                <th>Timestamp</th>
             </tr>
         </thead>
         <tbody>
             <?php
             $db = new SQLite3(
-                '../snakeHighscores.sqlite',
+                '../db/snakeHighscores.sqlite',
                 SQLITE3_OPEN_READWRITE,
                 SQLITE3_OPEN_CREATE
             );
@@ -34,7 +35,6 @@
             // Highscores in Tabelle ausgeben
             while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
                 echo "<tr>";
-                echo "<td>{$row['id']}</td>";
                 echo "<td>{$row['username']}</td>";
                 echo "<td>{$row['score']}</td>";
                 echo "<td>{$row['difficulty']}</td>";

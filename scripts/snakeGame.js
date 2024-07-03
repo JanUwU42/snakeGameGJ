@@ -7,6 +7,7 @@ var lastTime = 0;
 var speed = 0; // speed of the game in milliseconds (e.g. 100ms = 10fps)
 var animationId; // variable to save the requestAnimationFrame-ID
 var didChangeDirection = false; // variable to track wether the snake is already moving in this frame
+var difficulty = "Mittel"
 
 const diffuculties = [6, 10, 15, 25, 50, 100];
 
@@ -42,6 +43,28 @@ function getRandomInt(min, max) {
 
 function setDifficulty(fps) {
     speed = 1000 / fps; // convert fps in milliseconds per Frame
+
+    // sets difficulty as a text for the db
+    switch (fps) {
+        case 6:
+            difficulty = "Sehr leicht";
+            break;
+        case 10:
+            difficulty = "Leicht";
+            break;
+        case 15:
+            difficulty = "Mittel";
+            break;
+        case 25:
+            difficulty = "Schwer";
+            break;
+        case 50:
+            difficulty = "Sehr Schwer";
+            break;
+        case 100:
+            difficulty = "Unmöglich";
+            break;
+    }
 }
 
 function snakeEatApple() {
@@ -71,6 +94,8 @@ function resetGame() {
     apple.y = getRandomInt(0, 25) * grid;
 
     document.getElementById('startGameBtn').disabled = false; // reactivate the start button
+    
+    document.getElementById('userName').disabled = false; // reactivate the UserName Field
 }
 
 // game loop
@@ -135,6 +160,7 @@ function gameLoop(timestamp) {
             if (snake.cells[0].x === snake.cells[i].x && snake.cells[0].y === snake.cells[i].y) {
                 setHighscore();
                 resetGame();
+                updateDB();
                 return; // end the game loop to ensure that the game loop / requestanimationframe doesnt get called again
             }
         }
@@ -165,30 +191,38 @@ document.addEventListener('keydown', function (e) {
     switch (e.key) {
         // move left
         case 'ArrowLeft':
-        case 'a':
             moveLeft();
             e.preventDefault();
+            break;
+        case 'a':
+            moveLeft();
             break;
 
         // move up
         case 'ArrowUp':
-        case 'w':
             moveUp();
             e.preventDefault();
+            break;
+        case 'w':
+            moveUp();
             break;
 
         // move right
         case 'ArrowRight':
-        case 'd':
             moveRight();
             e.preventDefault();
+            break;
+        case 'd':
+            moveRight();
             break;
 
         // move down
         case 'ArrowDown':
-        case 's':
             moveDown();
             e.preventDefault();
+            break;
+        case 's':
+            moveDown();
             break;
     }
 });
@@ -231,6 +265,40 @@ function startGame() {
     if (!animationId) { // Start the game only if it is not already running
         animationId = requestAnimationFrame(gameLoop);
         document.getElementById('startGameBtn').disabled = true;
+        document.getElementById('userName').disabled = true;
     }
     updateScore();
 }
+
+async function updateDB() {
+    const timestamp = new Date().toISOString();
+    let data = {
+        "username": document.getElementById("userName").value,
+        "score": highscore,
+        "difficulty": difficulty,
+        "timestamp": timestamp
+    }
+
+    await fetch("../db/submit.php", {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+document.getElementById('userName').addEventListener('input', function () {
+    if (this.value == "") {
+        document.getElementById('startGameBtn').disabled = true;
+    } else {
+        document.getElementById('startGameBtn').disabled = false;
+    }
+});

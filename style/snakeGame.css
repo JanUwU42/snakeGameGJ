@@ -68,6 +68,16 @@ body {
     box-shadow: 0px 0px 0px 0px #a29bfe;
 }
 
+#startGameBtn:disabled {
+    background-color: #ff3f34;
+    box-shadow: none;
+    cursor: not-allowed;
+    animation: none;
+    /* Remove any CSS animations */
+    transition: none;
+    transform: none;
+}
+
 #homeBtn {
     margin-left: 200px;
     cursor: pointer;
@@ -75,4 +85,44 @@ body {
 
 #homeBtn:hover {
     box-shadow: 0 0 10px rgb(42, 145, 73), 0 0 30px rgb(42, 145, 73), 0 0 60px rgb(42, 145, 73), 0 0 120px rgb(42, 145, 73);
+}
+
+/*https://uiverse.io/sonusng/lovely-bulldog-50*/
+input {
+    width: 210px;
+    height: 50px;
+    padding: 0 16px;
+    background: transparent;
+    border-radius: 4px;
+    border: 1px solid #fe4567;
+    color: #f9f9f9;
+    animation: shake_541 0.14s 3;
+    margin-left: 200px;
+}
+
+input:valid {
+    border-color: #0be881;
+    animation: none;
+}
+
+input:disabled {
+    border-color: #0be881;
+    animation: none;
+    cursor: not-allowed;
+}
+
+@keyframes shake_541 {
+
+    0%,
+    100% {
+        translate: 0;
+    }
+
+    25% {
+        translate: 8px 0;
+    }
+
+    75% {
+        translate: -8px 0;
+    }
 }
