@@ -8,10 +8,11 @@ var speed = 0; // speed of the game in milliseconds (e.g. 100ms = 10fps)
 var animationId; // variable to save the requestAnimationFrame-ID
 var didChangeDirection = false; // variable to track wether the snake is already moving in this frame
 var difficulty = "Mittel"
+var buttons = document.getElementsByClassName('difficultyBtn');
 
-const diffuculties = [6, 10, 15, 25, 50, 100];
+const difficulties = [6, 10, 15, 25, 50, 100];
 
-setDifficulty(diffuculties[2]); // default speed = medium
+setDifficulty(difficulties[2], buttons[2]); // default speed = medium
 
 // create snake
 const snake = {
@@ -41,13 +42,19 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function setDifficulty(fps) {
+function setDifficulty(fps, btn) {
     speed = 1000 / fps; // convert fps in milliseconds per Frame
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('selected');
+    }
+    btn.classList.add('selected');
 
     // sets difficulty as a text for the db
     switch (fps) {
         case 6:
             difficulty = "Sehr leicht";
+            
             break;
         case 10:
             difficulty = "Leicht";
@@ -93,9 +100,17 @@ function resetGame() {
     apple.x = getRandomInt(0, 25) * grid;
     apple.y = getRandomInt(0, 25) * grid;
 
+    enableButtonsAndInput();
+}
+
+function enableButtonsAndInput() {
     document.getElementById('startGameBtn').disabled = false; // reactivate the start button
-    
+
     document.getElementById('userName').disabled = false; // reactivate the UserName Field
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = false;
+    }
 }
 
 // game loop
@@ -268,10 +283,17 @@ function startGame() {
     lastTime = 0; // reset lastTime to ensure smooth start
     if (!animationId) { // Start the game only if it is not already running
         animationId = requestAnimationFrame(gameLoop);
-        document.getElementById('startGameBtn').disabled = true;
-        document.getElementById('userName').disabled = true;
+        disableButtonsAndInput();
     }
     updateScore();
+}
+
+function disableButtonsAndInput() {
+    document.getElementById('startGameBtn').disabled = true;
+    document.getElementById('userName').disabled = true;
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+    }
 }
 
 async function updateDB() {
