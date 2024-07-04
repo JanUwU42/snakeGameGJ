@@ -18,7 +18,7 @@
             <tr>
                 <th>Username</th>
                 <th>Score</th>
-                <th>Diffuculty</th>
+                <th>Difficulty</th>
                 <th>Timestamp</th>
             </tr>
         </thead>
