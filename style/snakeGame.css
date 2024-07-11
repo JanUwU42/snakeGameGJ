@@ -34,7 +34,13 @@ body {
 }
 
 .difficultyBtn:disabled {
-    background-color: blue;
+    background-color: #808e9b;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.difficultyBtn:disabled:hover {
+    box-shadow: none;
 }
 
 #diffHeading {
@@ -61,21 +67,20 @@ body {
     transition: 0.5s;
     transition-property: box-shadow;
 
-    background: #0be881;
-    box-shadow: 0 0 25px rgb(42, 145, 73);
+    background: #05c46b;
+    box-shadow: 0 0 25px #05c46b;
 }
 
 .difficultyBtn:hover {
     box-shadow:
-        0 0 5px rgb(42, 145, 73),
-        0 0 25px rgb(42, 145, 73),
-        0 0 50px rgb(42, 145, 73),
-        0 0 100px rgb(42, 145, 73);
+        0 0 5px #05c46b,
+        0 0 25px #05c46b,
+        0 0 50px #05c46b,
+        0 0 100px #05c46b;
 }
 
 .selected {
-    background-color: #ff5e57;
-    border: 2px solid black;
+    background-color: #ff5e57 !important;
 
     box-shadow:
         0 0 5px #ff5e57,
