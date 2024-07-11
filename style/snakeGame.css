@@ -74,8 +74,14 @@ body {
 }
 
 .selected {
-    background-color: yellow;
+    background-color: #ff5e57;
     border: 2px solid black;
+
+    box-shadow:
+        0 0 5px #ff5e57,
+        0 0 25px #ff5e57,
+        0 0 50px #ff5e57,
+        0 0 100px #ff5e57 !important;
 }
 
 
