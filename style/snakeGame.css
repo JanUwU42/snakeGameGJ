@@ -34,7 +34,7 @@ body {
 }
 
 .difficultyBtn:disabled {
-    background-color:blue;
+    background-color: blue;
 }
 
 #diffHeading {
@@ -49,10 +49,27 @@ body {
 }
 
 .difficultyBtn {
-    margin: 5px;
-    padding: 5px;
-    font-size: 12px;
-    border: 2px solid black;
+    padding: 10px 20px;
+    border: none;
+    font-size: 10px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+
+    background: #0be881;
+    box-shadow: 0 0 25px rgb(42, 145, 73);
+}
+
+.difficultyBtn:hover {
+    box-shadow:
+        0 0 5px rgb(42, 145, 73),
+        0 0 25px rgb(42, 145, 73),
+        0 0 50px rgb(42, 145, 73),
+        0 0 100px rgb(42, 145, 73);
 }
 
 .selected {
