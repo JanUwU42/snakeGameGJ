@@ -34,7 +34,13 @@ body {
 }
 
 .difficultyBtn:disabled {
-    background-color:blue;
+    background-color: #808e9b;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.difficultyBtn:disabled:hover {
+    box-shadow: none;
 }
 
 #diffHeading {
@@ -48,16 +54,39 @@ body {
     text-shadow: 0 0 15px rgb(42, 145, 73), 0 0 30px rgb(42, 145, 73), 0 0 60px rgb(42, 145, 73), 0 0 120px rgb(42, 145, 73);
 }
 
+/*https://uiverse.io/mrhyddenn/moody-badger-62*/
 .difficultyBtn {
-    margin: 5px;
-    padding: 5px;
-    font-size: 12px;
-    border: 2px solid black;
+    padding: 10px 20px;
+    border: none;
+    font-size: 10px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+
+    background: #05c46b;
+    box-shadow: 0 0 25px #05c46b;
+}
+
+.difficultyBtn:hover {
+    box-shadow:
+        0 0 5px #05c46b,
+        0 0 25px #05c46b,
+        0 0 50px #05c46b,
+        0 0 100px #05c46b;
 }
 
 .selected {
-    background-color: yellow;
-    border: 2px solid black;
+    background-color: #ff5e57 !important;
+
+    box-shadow:
+        0 0 5px #ff5e57,
+        0 0 25px #ff5e57,
+        0 0 50px #ff5e57,
+        0 0 100px #ff5e57 !important;
 }
 
 
