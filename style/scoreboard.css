@@ -23,10 +23,13 @@ i {
 }
 
 .content-table {
+    margin-left: 200px;
+    margin-right: 200px;
+    width: calc(100% - 400px);
     border-collapse: collapse;
-    margin: 25px 0;
+    margin-top: 25px;
     font-size: 0.9em;
-    min-width: 400px;
+    min-width: 800px;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -39,9 +42,6 @@ i {
     font-weight: bold;
 }
 
-.content-table th {
-
-}
 
 .content-table td {
     padding: 12px 15px;
@@ -57,7 +57,7 @@ i {
 
 
 .content-table tbody tr:last-of-type {
-    border-bottom: 2pc solid #485460;
+    border-bottom: 2px solid #485460;
 }
 
 
