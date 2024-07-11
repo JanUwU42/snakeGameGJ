@@ -7,4 +7,4 @@ If you want to play the game and try to get a new Highscore, you can play it at 
 http://snakegame.bplaced.net/Index.html
 
 
-### This game is still in development!
+### Have fun!
