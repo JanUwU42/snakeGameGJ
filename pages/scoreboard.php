@@ -13,7 +13,7 @@
     <button id="homeBtn" onclick="location.href='../Index.html'"><img src="../img/homeIcon.png" alt="homeIcon"></button>
     <hr>
 
-    <table>
+    <table class = "content-table">
         <thead>
             <tr>
                 <th>Username</th>
